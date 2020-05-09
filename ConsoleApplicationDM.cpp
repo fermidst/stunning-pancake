@@ -20,10 +20,10 @@ void getTruthTable(int columns, int rows, vvs& array) {
     for (auto j = 0; j < rows; j++) {
       if ((j + 1) % (int)std::pow(2, columns - i) <= (int)std::pow(2, columns - i) / 2 &&
         (j + 1) % (int)std::pow(2, columns - i) != 0) {
-        array.at(i).at(j) = "0";
+        array.at(j).at(i) = "0";
       }
       else {
-        array.at(i).at(j) = "1";
+        array.at(j).at(i) = "1";
       }
     }
   }
@@ -36,7 +36,7 @@ std::string getPDNF(std::string const& funcValues, vvs const& truthTable, int co
     for (auto j = 0; funcValues.at(i) == '1' && j < columns; j++)
     {
       
-      result += truthTable.at(j).at(i) == "0" ? Symbols.at(j + Symbols.size() / 2) : Symbols.at(j);
+      result += truthTable.at(i).at(j) == "0" ? Symbols.at(j + Symbols.size() / 2) : Symbols.at(j);
       if (j == columns - 1) result += " | ";
     }
   }
@@ -57,7 +57,7 @@ std::string getPCNF(std::string const& funcValues, vvs const& truthTable, int co
         k = 0;
       }
 
-      result += truthTable.at(j).at(i) == "1" ? Symbols.at(j + Symbols.size() / 2) : Symbols.at(j);
+      result += truthTable.at(i).at(j) == "1" ? Symbols.at(j + Symbols.size() / 2) : Symbols.at(j);
       if (j == columns - 1)
         result += ") & ";
       else
@@ -76,7 +76,7 @@ int main() {
   auto columns = (int)(std::log(funcVector.size()) / std::log(2));
   auto rows = (int)std::pow(2, columns);
 
-  vvs truthTable = vvs(columns, vs(rows));
+  vvs truthTable = vvs(rows, vs(columns));
   getTruthTable(columns, rows, truthTable);
 
   std::cout << "PDNF: " << getPDNF(funcVector, truthTable, columns) << std::endl;
