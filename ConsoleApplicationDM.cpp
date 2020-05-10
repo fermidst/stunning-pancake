@@ -84,13 +84,11 @@ int main() {
 
   // n1 = 16 + 3 = 19; 0d19 = 0b10011;
   std::string n1FuncVector = "00010011";
+  std::cout << "n1 (16 + 3) 00010011 PDNF: " << getPDNF(n1FuncVector, truthTable, columns) << std::endl;
+  std::cout << "n1 (16 + 3) 00010011 PCNF: " << getPCNF(n1FuncVector, truthTable, columns) << std::endl;
 
   // n2 = 256 - 19 = 237; 0d237 = 0b11101101;
   std::string n2FuncVector = "11101101";
-
-  std::cout << "n1 (16 + 3) 00010011 PDNF: " << getPDNF(n1FuncVector, truthTable, columns) << std::endl;
-  std::cout << "n1 (16 + 3) 00010011 PCNF: " << getPCNF(n1FuncVector, truthTable, columns) << std::endl;
   std::cout << "n2 (256 - (16 + 3)) 11101101 PDNF: " << getPDNF(n2FuncVector, truthTable, columns) << std::endl;
   std::cout << "n2 (256 - (16 + 3)) 11101101 PCNF: " << getPCNF(n2FuncVector, truthTable, columns) << std::endl;
-
 }
